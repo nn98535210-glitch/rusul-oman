@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رُسُل عُمان | RUSUL OMAN</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f2faf8;color:#17443f}
+header{padding:18px;background:white;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.logo{font-size:25px;font-weight:bold;color:#078879}
+select,input,button{padding:12px;border:1px solid #bcd9d1;border-radius:12px;font-size:15px}
+.hero{padding:85px 15px;text-align:center;color:white;background:linear-gradient(120deg,#087b83,#16ad94,#f6b75e,#e87961)}
+.hero h1{font-size:38px}
+.hero p{font-size:19px}
+button{cursor:pointer}
+.hero button{background:white;color:#087b83;font-weight:bold;border:0}
+section{padding:30px 6%}
+h2{color:#087b83}
+.categories,.governorates{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}
+.categories button,.governorates button{background:white;color:#087b83}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 3px 12px #0001}
+.pic{height:110px;display:grid;place-items:center;font-size:45px;background:linear-gradient(130deg,#a8e2d4,#f6d49a)}
+.card div:last-child{padding:14px}
+.card h3{color:#078879}
+.info{background:#e1f3ed;padding:22px;border-radius:18px;margin:15px 0}
+footer{text-align:center;background:#17443f;color:white;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">رُسُل عُمان 🇴🇲</div>
+<select onchange="language(this.value)">
+<option value="ar">العربية</option>
+<option value="en">English</option>
+<option value="fr">Français</option>
+<option value="de">Deutsch</option>
+<option value="es">Español</option>
+<option value="zh">中文</option>
+</select>
+</header>
+<div class="hero">
+<h1 id="title">عُمان... حكاية تراث وجمال لا ينتهي</h1>
+<p id="desc">اكتشف أرض التاريخ والطبيعة والضيافة الأصيلة</p>
+<button onclick="document.getElementById('explore').scrollIntoView({behavior:'smooth'})" id="start">استكشف عُمان</button>
+</div>
+<section style="text-align:center">
+<h2>أهلًا بك في رُسُل عُمان</h2>
+<p>رحلتك لاكتشاف كنوز سلطنة عُمان، من الجبال والشواطئ إلى القلاع والأسواق التراثية.</p>
+</section>
+<section id="explore">
+<h2>اكتشف الوجهات العُمانية</h2>
+<input id="search" style="width:100%" placeholder="ابحث عن مكان أو محافظة..." oninput="show()">
+<h3>التصنيفات السياحية</h3>
+<div class="categories" id="cats"></div>
+<h3>محافظات السلطنة</h3>
+<div class="governorates" id="govs"></div>
+<div class="cards" id="cards"></div>
+</section>
+<section>
+<div class="info"><h2>✨ راشد – رفيق رحلتك</h2><p>دليلك للتعرف على الأماكن السياحية والتراث العُماني. المزيد من الخدمات قريبًا.</p></div>
+<div class="info"><h2>🎫 جواز المسافر الرقمي</h2><p>اكتشف محافظات عُمان واجمع أختام رحلتك.</p></div>
+<div class="info"><h2>🔎 افتح كنوز عُمان</h2><p>ألغاز وقصص ومعلومات ممتعة عن تاريخ عُمان.</p></div>
+</section>
+<footer>رُسُل عُمان | RUSUL OMAN<br>عُمان... حكاية تراث وجمال لا ينتهي</footer>
+<script>
+const categories=["الأودية","الأفلاج","العيون المائية","الشلالات","الكهوف","الجبال والقمم","الشواطئ","الجزر والخلجان","البحيرات والسبخات","القلاع والحصون","الأبراج والأسوار","القرى التراثية","المواقع الأثرية","المدافن القديمة","الأسواق التراثية","المتاحف والبيوت التاريخية","المساجد التاريخية","الصحاري والرمال","المحميات الطبيعية","الحياة البرية","مراقبة الطيور","مواقع السلاحف البحرية","التخييم والمغامرات","الغوص والغطس","القرى الجبلية","المزارع والواحات","الفنون والحرف العُمانية","المهرجانات والفعاليات"];
+const governors=["مسقط","ظفار","مسندم","البريمي","الداخلية","شمال الباطنة","جنوب الباطنة","شمال الشرقية","جنوب الشرقية","الوسطى","الظاهرة"];
+const places=[
+["وادي شاب","الأودية","جنوب الشرقية","🏞️"],
+["وادي بني خالد","الأودية","شمال الشرقية","💧"],
+["فلج دارس","الأفلاج","الداخلية","💦"],
+["عين رزات","العيون المائية","ظفار","🌊"],
+["شاطئ المغسيل","الشواطئ","ظفار","🏖️"],
+["قلعة نزوى","القلاع والحصون","الداخلية","🏰"],
+["سوق مطرح","الأسواق التراثية","مسقط","🛍️"],
+["كهف الهوتة","الكهوف","الداخلية","🪨"],
+["جبل شمس","الجبال والقمم","الداخلية","⛰️"],
+["رمال الشرقية","الصحاري والرمال","شمال الشرقية","🏜️"],
+["محمية السلاحف برأس الجنز","مواقع السلاحف البحرية","جنوب الشرقية","🐢"]
+];
+let cat="",gov="";
+categories.forEach(c=>cats.innerHTML+=`<button onclick="cat='${c}';show()">${c}</button>`);
+governors.forEach(g=>govs.innerHTML+=`<button onclick="gov='${g}';show()">${g}</button>`);
+function show(){
+let q=search.value.toLowerCase();
+cards.innerHTML="";
+places.filter(p=>(!cat||p[1]===cat)&&(!gov||p[2]===gov)&&p.join(" ").toLowerCase().includes(q)).forEach(p=>{
+cards.innerHTML+=`<article class="card"><div class="pic">${p[3]}</div><div><h3>${p[0]}</h3><p>${p[1]} • ${p[2]}</p></div></article>`;
+});
+}
+function language(v){
+const t={ar:["عُمان... حكاية تراث وجمال لا ينتهي","اكتشف أرض التاريخ والطبيعة والضيافة الأصيلة","استكشف عُمان"],en:["Oman... A story of heritage and beauty","Discover history, nature and hospitality","Explore Oman"],fr:["Oman... Une histoire de patrimoine et de beauté","Découvrez l'histoire et la nature","Explorer Oman"],de:["Oman... Eine Geschichte von Erbe und Schönheit","Entdecke Geschichte und Natur","Oman entdecken"],es:["Omán... Una historia de patrimonio y belleza","Descubre la historia y la naturaleza","Explora Omán"],zh:["阿曼……传承与美丽的故事","探索历史与自然","探索阿曼"]};
+title.textContent=t[v][0];desc.textContent=t[v][1];start.textContent=t[v][2];
+document.documentElement.dir=v==="ar"?"rtl":"ltr";
+}
+show();
+</script>
+</body>
+</html>
